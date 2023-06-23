@@ -10,7 +10,7 @@ $height = $_POST["height"];
 $weight = $_POST["weight"];
 $reach = $_POST["reach"];
 
-$statement = mysqli_prepare($conn, "INSERT INTO user VALUES (?,?,sha2(?,256),?)");
+$statement = mysqli_prepare($conn, "INSERT INTO user VALUES (?,?,sha2(?,256),?,null)");
 $statement2 = mysqli_prepare($conn, "INSERT INTO bodyinfo VALUES (?,?,?,?)");
 
 mysqli_stmt_bind_param($statement, "ssss", $userid, $email, $userpw, $nickname);
