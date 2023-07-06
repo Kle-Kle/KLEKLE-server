@@ -2,10 +2,10 @@
 include_once '../../dbconfig.php';
 
 $newNickname = $_POST["newNickname"];
-$nickname = $_POST["nickname"];
+$userid = $_POST["userid"];
 
-$statement = mysqli_prepare($conn, "UPDATE user SET nickname=? WHERE nickname=?");
-mysqli_stmt_bind_param($statement, "ss", $newNickname, $nickname);
+$statement = mysqli_prepare($conn, "UPDATE user SET nickname=? WHERE userid=?");
+mysqli_stmt_bind_param($statement, "ss", $newNickname, $userid);
 mysqli_stmt_execute($statement);
 
 $response = array();
