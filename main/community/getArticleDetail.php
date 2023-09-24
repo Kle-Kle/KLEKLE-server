@@ -5,7 +5,7 @@ $statement = mysqli_prepare($conn, "SELECT * from view_article_detail");
 mysqli_stmt_execute($statement);
 
 mysqli_stmt_store_result($statement);
-mysqli_stmt_bind_result($user_nickname, $user_id, $user_profile, $article_no, $article_content, $comment_count, $article_image);
+mysqli_stmt_bind_result($statement, $user_nickname, $user_id, $user_profile, $article_no, $article_content, $comment_count, $article_image);
 
 $response = array();
 $response["success"] = false;
@@ -26,5 +26,6 @@ while(mysqli_stmt_fetch($statement)) {
 	$count++;
 }
 
-echo json_encode($response);
+header('Content-type: text/javascript');
+echo json_encode($response, JSON_PRETTY_PRINT);
 ?>
