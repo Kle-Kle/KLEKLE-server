@@ -28,5 +28,6 @@ while(mysqli_stmt_fetch($statement)) {
 	$count++;
 }
 
-echo json_encode($response);
+header('Content-type: text/javascript');
+echo json_encode($response, JSON_PRETTY_PRINT);
 ?>
