@@ -1,7 +1,7 @@
 <?php
 include_once '../../dbconfig.php';
 
-$userid = $_POST["userid"];
+$userid = $_GET["userid"];
 
 $statement = mysqli_prepare($conn, "SELECT * FROM view_article_detail WHERE userid = ? ");
 mysqli_stmt_bind_param($statement, "s", $userid);

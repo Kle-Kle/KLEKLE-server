@@ -1,10 +1,10 @@
 <?php
 include_once '../../dbconfig.php';
 
-$article_no = $_POST["articleNo"];
+$article_no = $_GET["articleNo"];
 
 $statement = mysqli_prepare($conn, "select * from view_comment_with_user where articleNo=?");
-mysqli_stmt_bind_param($statement, "i", $article_no);
+mysqli_stmt_bind_param($statement, "s", $article_no);
 mysqli_stmt_execute($statement);
 mysqli_stmt_store_result($statement);
 mysqli_stmt_bind_result($user_nickname, $userid, $user_profile, $comment_no, $comment_content, $commented, $userid, $articleNo);
