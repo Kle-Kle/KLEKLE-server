@@ -1,13 +1,13 @@
 <?php
 include_once '../../dbconfig.php';
 
-$userid = $_GET["userid"];
+$userid = $_POST["userid"];
 
 $statement = mysqli_prepare($conn, "SELECT * FROM view_article_detail WHERE userid = ? ");
 mysqli_stmt_bind_param($statement, "s", $userid);
 mysqli_stmt_execute($statement);
 mysqli_stmt_store_result($statement);
-mysqli_stmt_bind_result($user_nickname, $user_id, $user_profile, $article_no, $article_content, $comment_count, $article_image);
+mysqli_stmt_bind_result($statement, $userNickname, $userId, $userProfile, $articleNo, $articleContent, $commentCount, $articleImage);
 
 $response = array();
 $response["success"] = false;
@@ -17,13 +17,13 @@ $count = 0;
 
 while(mysqli_stmt_fetch($statement)) {
 	$response["success"] = true;
-	$response["result"][$count]["user_nickname"]=$user_nickname;
-	$response["result"][$count]["user_id"]=$user_id;
-	$response["result"][$count]["user_profile"]=$user_profile;
-	$response["result"][$count]["article_no"]=$article_no;
-	$response["result"][$count]["article_content"]=$article_content;
-	$response["result"][$count]["comment_count"]=$comment_count;
-	$response["result"][$count]["article_image"]=$article_image;
+	$response["result"][$count]["userNickname"]=$userNickname;
+	$response["result"][$count]["userId"]=$userId;
+	$response["result"][$count]["userProfile"]=$userProfile;
+	$response["result"][$count]["articleNo"]=$articleNo;
+	$response["result"][$count]["articleContent"]=$articleContent;
+	$response["result"][$count]["commentCount"]=$commentCount;
+	$response["result"][$count]["articleImage"]=$articleImage;
 
 	$count++;
 }
