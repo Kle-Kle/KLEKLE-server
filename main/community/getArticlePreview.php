@@ -1,7 +1,7 @@
 <?php
 include_once '../../dbconfig.php';
 
-$statement = mysqli_prepare($conn, "SELECT * from view_article_detail");
+$statement = mysqli_prepare($conn, "SELECT * from view_article_preview");
 mysqli_stmt_execute($statement);
 
 mysqli_stmt_store_result($statement);
