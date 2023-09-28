@@ -5,7 +5,7 @@ $statement = mysqli_prepare($conn, "SELECT * from view_article_preview");
 mysqli_stmt_execute($statement);
 
 mysqli_stmt_store_result($statement);
-mysqli_stmt_bind_result($statement, $user_nickname, $user_id, $user_profile, $article_no, $article_content, $comment_count, $article_image);
+mysqli_stmt_bind_result($statement, $user_nickname, $user_id, $user_profile, $article_no, $published, $article_content, $comment_count, $article_image);
 
 $response = array();
 $response["success"] = false;
@@ -19,6 +19,7 @@ while(mysqli_stmt_fetch($statement)) {
 	$response["result"][$count]["user_id"]=$user_id;
 	$response["result"][$count]["user_profile"]=$user_profile;
 	$response["result"][$count]["article_no"]=$article_no;
+	$response["result"][$count]["published"]=$published;
 	$response["result"][$count]["article_content"]=$article_content;
 	$response["result"][$count]["comment_count"]=$comment_count;
 	$response["result"][$count]["article_image"]=$article_image;
