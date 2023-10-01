@@ -2,9 +2,10 @@
 include_once '../../dbconfig.php';
 
 $userid = $_POST["userid"];
+$limit = 10;
 
-$statement = mysqli_prepare($conn, "SELECT * FROM view_article_preview WHERE userid = ? ");
-mysqli_stmt_bind_param($statement, "s", $userid);
+$statement = mysqli_prepare($conn, "SELECT * FROM view_article_preview WHERE userid = ? LIMIT ?");
+mysqli_stmt_bind_param($statement, "ss", $userid, $limit);
 mysqli_stmt_execute($statement);
 mysqli_stmt_store_result($statement);
 mysqli_stmt_bind_result($statement, $userNickname, $userId, $userProfile, $articleNo, $published, $articleContent, $commentCount, $articleImage);
