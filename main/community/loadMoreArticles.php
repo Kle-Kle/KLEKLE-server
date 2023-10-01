@@ -2,9 +2,11 @@
 include_once '../../dbconfig.php';
 
 $limit = 10;
+$last_date = $_POST['last_date'];
+// $last_date = '2023-09-24 23:56:38';
 
-$statement = mysqli_prepare($conn, "SELECT * from view_article_preview LIMIT ?");
-mysqli_stmt_bind_param($statement, "s", $limit);
+$statement = mysqli_prepare($conn, "SELECT * from view_article_preview WHERE published < ? LIMIT ?");
+mysqli_stmt_bind_param($statement, "ss", $last_date, $limit);
 mysqli_stmt_execute($statement);
 
 mysqli_stmt_store_result($statement);
