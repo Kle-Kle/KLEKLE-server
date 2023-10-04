@@ -3,7 +3,7 @@ include_once '../../dbconfig.php';
 
 $limit = 10;
 
-$statement = mysqli_prepare($conn, "SELECT * from view_article_preview LIMIT ?");
+$statement = mysqli_prepare($conn, "SELECT user_nickname, userid, user_profile, article_no, published, article_content, comment_count, article_image from view_article_preview LIMIT ?");
 mysqli_stmt_bind_param($statement, "s", $limit);
 mysqli_stmt_execute($statement);
 

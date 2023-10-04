@@ -4,7 +4,7 @@ include_once '../../dbconfig.php';
 $currentDate = $_POST["currentDate"];
 $userid = $_POST["userid"];
 
-$statement = mysqli_prepare($conn, "SELECT * FROM view_article_preview WHERE published LIKE ? HAVING userid = ? ORDER BY published DESC LIMIT 1");
+$statement = mysqli_prepare($conn, "SELECT user_nickname, userid, user_profile, article_no, published, article_content, comment_count, article_image FROM view_article_preview WHERE published LIKE ? HAVING userid = ? ORDER BY published DESC LIMIT 1");
 mysqli_stmt_bind_param($statement, "ss", $currentDate, $userid);
 mysqli_stmt_execute($statement);
 
