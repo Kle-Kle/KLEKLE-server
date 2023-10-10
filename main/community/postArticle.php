@@ -6,7 +6,7 @@ $content = $_POST["content"];
 $userid = $_POST["userid"];
 $image = $_POST["image"];
 
-$statement = mysqli_prepare($conn, "INSERT INTO article VALUES (null, null, NOW(), ?, ?, ?)"); // 본문 내용, userid, image
+$statement = mysqli_prepare($conn, "INSERT INTO article VALUES (null, null, NOW(), ?, ?, ?, 0)"); // 본문 내용, userid, image, is_edited
 mysqli_stmt_bind_param($statement, "sss", $content, $userid, $image);
 
 $response = array();

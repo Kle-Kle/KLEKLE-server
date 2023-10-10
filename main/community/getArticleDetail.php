@@ -7,7 +7,7 @@ $statement = mysqli_prepare($conn, "SELECT * FROM view_article_preview WHERE art
 mysqli_stmt_bind_param($statement, "s", $article_no);
 mysqli_stmt_execute($statement);
 mysqli_stmt_store_result($statement);
-mysqli_stmt_bind_result($statement, $userNickname, $userId, $userProfile, $userFcmToken, $articleNo, $published, $articleContent, $commentCount, $articleImage);
+mysqli_stmt_bind_result($statement, $userNickname, $userId, $userProfile, $userFcmToken, $articleNo, $published, $articleContent, $commentCount, $articleImage, $isEdited);
 
 $response = array();
 $response["success"] = false;
@@ -26,6 +26,7 @@ while(mysqli_stmt_fetch($statement)) {
 	$response["result"][$count]["articleContent"]=$articleContent;
 	$response["result"][$count]["commentCount"]=$commentCount;
 	$response["result"][$count]["articleImage"]=$articleImage;
+	$response["result"][$count]["isEdited"]=$isEdited;
 
 	$count++;
 }

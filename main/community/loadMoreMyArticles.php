@@ -6,12 +6,12 @@ $last_date = $_POST['last_date'];
 $userid = $_POST["userid"];
 // $last_date = '2023-10-02 00:45:03';
 
-$statement = mysqli_prepare($conn, "SELECT user_nickname, userid, user_profile, article_no, published, article_content, comment_count, article_image FROM view_article_preview WHERE published < ? HAVING userid = ? LIMIT ?");
+$statement = mysqli_prepare($conn, "SELECT user_nickname, userid, user_profile, article_no, published, article_content, comment_count, article_image, is_edited FROM view_article_preview WHERE published < ? HAVING userid = ? LIMIT ?");
 mysqli_stmt_bind_param($statement, "sss", $last_date, $userid, $limit);
 mysqli_stmt_execute($statement);
 
 mysqli_stmt_store_result($statement);
-mysqli_stmt_bind_result($statement, $user_nickname, $user_id, $user_profile, $article_no, $published, $article_content, $comment_count, $article_image);
+mysqli_stmt_bind_result($statement, $user_nickname, $user_id, $user_profile, $article_no, $published, $article_content, $comment_count, $article_image, $isEdited);
 
 $response = array();
 $response["success"] = false;
@@ -29,6 +29,7 @@ while(mysqli_stmt_fetch($statement)) {
 	$response["result"][$count]["article_content"]=$article_content;
 	$response["result"][$count]["comment_count"]=$comment_count;
 	$response["result"][$count]["article_image"]=$article_image;
+	$response["result"][$count]["isEdited"]=$isEdited;
 
 	$count++;
 }

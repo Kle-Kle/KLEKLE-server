@@ -6,7 +6,7 @@ $content = $_POST["content"];
 $image = $_POST["image"];
 
 // $statement = mysqli_prepare($conn, "UPDATE article SET published=NOW(), content=?, image=? WHERE article_no=?");
-$statement = mysqli_prepare($conn, "UPDATE article SET content=?, image=? WHERE article_no=?"); // published 수정 안 함
+$statement = mysqli_prepare($conn, "UPDATE article SET content=?, image=?, is_edited=1 WHERE article_no=?"); // published 수정 안 함
 mysqli_stmt_bind_param($statement, "sss", $content, $image, $articleNo);
 
 $response = array();
