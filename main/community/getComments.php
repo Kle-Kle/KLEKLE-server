@@ -7,7 +7,7 @@ $statement = mysqli_prepare($conn, "select * from view_comment_with_user where a
 mysqli_stmt_bind_param($statement, "s", $article_no);
 mysqli_stmt_execute($statement);
 mysqli_stmt_store_result($statement);
-mysqli_stmt_bind_result($statement, $userNickname, $userid, $userProfile, $commentNo, $commentContent, $commented, $articleNum);
+mysqli_stmt_bind_result($statement, $userNickname, $userid, $userProfile, $commentNo, $commentContent, $commented, $isEdited, $articleNum);
 
 $response = array();
 $response["success"] = false;
@@ -24,6 +24,7 @@ while(mysqli_stmt_fetch($statement)) {
 	$response["result"][$count]["commentContent"]=$commentContent;
 	$response["result"][$count]["commented"]=$commented;
 	$response["result"][$count]["articleNo"]=$articleNum;
+	$response["result"][$count]["isEdited"]=$isEdited;
 
 	$count++;
 }

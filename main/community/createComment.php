@@ -5,7 +5,7 @@ $content = $_POST["content"];
 $userid = $_POST["userid"];
 $article_no = $_POST["article_no"];
 
-$statement = mysqli_prepare($conn, "INSERT INTO comment VALUES (null, ?, NOW(), ?, ?)");
+$statement = mysqli_prepare($conn, "INSERT INTO comment VALUES (null, ?, NOW(), ?, ?, 0)");
 mysqli_stmt_bind_param($statement, "sss", $content, $userid, $article_no);
 mysqli_stmt_execute($statement);
 
