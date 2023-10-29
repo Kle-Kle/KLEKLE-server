@@ -13,4 +13,5 @@ $response = array();
 $response["success"] = true;
 
 echo json_encode($response);
+mysqli_close($conn);
 ?>  

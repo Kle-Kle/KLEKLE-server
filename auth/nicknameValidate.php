@@ -19,4 +19,5 @@ while(mysqli_stmt_fetch($statement)){
 }
 
 echo json_encode($response);
+mysqli_close($conn);
 ?>

@@ -17,4 +17,5 @@ else {
 
 header('Content-type: text/javascript');
 echo json_encode($response);
+mysqli_close($conn);
 ?>
